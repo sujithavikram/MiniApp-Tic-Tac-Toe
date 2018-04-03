@@ -1,0 +1,72 @@
+body {
+    background-color: lightgoldenrodyellow;
+    position: relative;
+}
+.container {
+    height: 400px;
+    position: absolute;
+}
+.row {    
+    position: relative;
+    left: 300px;
+    top: 300px;
+    padding: 30px 20px;
+    border: 1px solid black;
+    width: 300px;
+}
+.row span {
+    margin: 20px;
+    padding: 10px;
+    border: 2px solid blue;
+    width: 100px;
+}
+.btn-start {
+    position: relative;
+    width: 100px;
+    height: 50px;
+    top: 400px;
+    left: 100px;
+    background-color: lavender;
+    cursor: pointer;
+    font-weight: 300;
+    transition: background-color 0.3s, color 0.3s;
+}
+.players {
+    position: relative;
+    top: 200px;
+    left: 10%;
+    margin: 20px;
+    padding: 0px;
+    
+}
+ .players div {
+    margin: 10px;
+    padding: 20px;
+    display: inline;
+}
+.player-1 , .player-2 {
+    border: 1px solid red;
+    padding: 10px;
+    margin: 5px;
+    display: block;
+}
+
+button:hover { font-weight: 600; }
+button:hover { margin-right: 20px; }
+
+.active {
+    background-color: rgb(216, 216, 87);
+    font-weight: 600;
+    font-style: inherit;
+}
+
+.winner {
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    top: 100px;
+    left: 400px;
+    background-color: mediumseagreen;
+    font-weight: 600;
+    padding: 20px;
+}

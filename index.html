@@ -1,0 +1,47 @@
+<html>
+
+<head>
+    <title>Tic-Tac-Toe Game</title>
+    <link type="text/css" rel="stylesheet" href="style.css">
+
+</head>
+
+<body onload="myFunction()">
+    <div class="container">
+        <div class="row" id="row0">
+            <span id="00"></span>
+            <span id="01"></span>
+            <span id="02"></span>
+        </div>
+        <div class="row" id="row1">
+            <span id="10"></span>
+            <span id="11"></span>
+            <span id="12"></span>
+        </div>
+        <div class="row" id="row2">
+            <span id="20"></span>
+            <span id="21"></span>
+            <span id="22"></span>
+        </div>
+        <div class="scores">
+            <div>
+                <button class="btn-start">Start Game</button>
+            </div>
+
+        </div>
+    </div>
+    <div class="players">
+        <div id="player-1" class="active">
+            <div>Player X</div>
+            <div id="score-X">Score X : 0 </div>
+        </div>
+        <div id="player-2">
+            <div>Player O</div>
+            <div id="score-O">Score O : 0  </div>
+        </div>
+    </div>
+    
+    <script src="./app.js"></script>
+</body>
+
+</html>
