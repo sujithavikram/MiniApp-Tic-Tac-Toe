@@ -25,18 +25,26 @@
         </div>
         <div class="scores">
             <div>
-                <button class="btn-start">Start Game</button>
+                <button id="btn-start">Start Game</button>
+                <button id="btn-reset">Reset Game</button>
             </div>
-
         </div>
     </div>
+    <div id='playersInput' >
+        Enter Player1 Name:<input id='userinput1' type='text'></input>
+        <input id='input1' type="submit" value="Submit">
+        Enter Player2 Name:<input id='userinput2' type='text'></input>
+        <input id='input2' type="submit" value="Submit">
+    </div>
     <div class="players">
-        <div id="player-1" class="active">
+        <div id="player-1" class='active'>
             <div>Player X</div>
+            <div id='playerinput1'>PLAYER 1 NAME</div>
             <div id="score-X">Score X : 0 </div>
         </div>
         <div id="player-2">
             <div>Player O</div>
+            <div id='playerinput2'>PLAYER 2 NAME</div>
             <div id="score-O">Score O : 0  </div>
         </div>
     </div>

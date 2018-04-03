@@ -1,14 +1,44 @@
 var myFunction = function () {
     // alert("page is loaded");
     var board = 3;
+    var flag = false;
     var spans = document.getElementsByTagName('span');
-    // console.log("span elements,", spans);
 
-    //attach onclick event for each span element
     for (i = 0; i < spans.length; i++) {
         spans[i].onclick = toggleFunction;
     }
     var clickCount = 0;
+
+    console.log("span elements,", spans);
+
+    document.getElementById("btn-start").addEventListener("click", init);
+
+    function init() {
+        console.log("inside init()");
+        document.getElementById("player-1").classList.add("active");
+        document.getElementById("player-2").classList.remove("active");
+        // document.getElementById('first-player').style.display = 'none';
+
+        clickCount = 0;
+        resetBoard();
+    }
+
+    document.getElementById("btn-reset").addEventListener("click", resetBoard);
+
+    //attach onclick event for each span element
+    document.getElementById("input1").addEventListener("click", readPlayerNames);
+    document.getElementById("input2").addEventListener("click", readPlayerNames);
+
+
+    function readPlayerNames() {
+        console.log(event.path[0].id)
+        var player1 = document.getElementById('user'+event.path[0].id).value;
+        // document.getElementById('userinput1').value = '';
+        console.log(player1);
+        // document.getElementById('first-player').style.display = 'block';
+        document.getElementById('player'+ event.path[0].id).innerText = player1;
+    }
+    
 
     function toggleFunction(event) {
         // console.log("clicked element,", event.path[0]);
@@ -24,7 +54,7 @@ var myFunction = function () {
                 if (checkForThree()) {
                     endGame('X');
                 }
-                // checkFullBoard();
+                // checkFullBoard();               
             }
         } else if (clickCount % 2 === 1) {    // Player O turn
             if (!value) {
@@ -118,7 +148,6 @@ var myFunction = function () {
         playerRightToLeft = rightToLeft.reduce(function(a, b) {
             return a === b ? a : NaN;   
         });
-
         console.log("after diagonal elemnt,",playerLeftToRight, playerRightToLeft );
 
 
@@ -131,28 +160,47 @@ var myFunction = function () {
         document.getElementById("player-1").classList.remove("active");
         document.getElementById("player-2").classList.remove("active");
         clickCount = -1;
-        var divElement = document.createElement('div');
-        divElement.setAttribute("class", "winner" );       
-        divElement.innerHTML = val + '  is winner!!';
-        document.body.appendChild(divElement);
 
-        var winnerId = 'score-'+val;
-        console.log("after winner," , winnerId);
+        var divWinnerElement = document.getElementById('winner');
+
+        if (!divWinnerElement) {
+            divWinnerElement = document.createElement('div');
+            divWinnerElement.setAttribute("id", "winner" );  
+            document.body.appendChild(divWinnerElement);  
+        }
+        console.log("inside end function");
+
+        divWinnerElement.innerHTML = val + '  is winner!!';
+        document.getElementById('winner').style.display = 'block';
+
+        // var winnerId = 'score-'+val;
+        // console.log("after winner," , winnerId);
         
-        var winnerScore = document.getElementById("score-X");
+        var winnerScore = document.getElementById('score-'+val).innerText;
+        console.log(" winner before parsing ," ,  winnerScore);
 
-        
-        console.log("winnerScore inside endGame,", winnerScore );
-        // if (val === 'X') {
-        //     // increment score of X
-
-        // }
-        resetBoard();
+        winnerScore = winnerScore.split(':')[1];
+        winnerScore = Number(winnerScore) + 1; // increment the score
+        console.log(" winner," , winnerScore);
+        document.getElementById('score-'+val).innerText = "Score "+ val + ' : ' + winnerScore // updated score
     }
 
     function resetBoard() {
         // reset the values inside span
+        for ( var i = 0; i < spans.length; i++) {
+            spans[i].innerText = "";
+        }
+        clickCount = 0;
+        console.log("inside resetBoard"); 
+        var winnerVar = document.getElementById('winner');
+        if (winnerVar) {
+            console.log("inside if,", winnerVar);
+            document.getElementById('winner').style.display = 'none';
+        }
+        document.getElementById("player-1").classList.add("active");
+        document.getElementById("player-2").classList.remove("active");
     }
 
-
+  
+    init();
 }

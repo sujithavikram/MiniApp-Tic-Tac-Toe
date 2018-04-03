@@ -20,12 +20,13 @@ body {
     border: 2px solid blue;
     width: 100px;
 }
-.btn-start {
+button {
     position: relative;
+    margin: 20px;
     width: 100px;
     height: 50px;
     top: 400px;
-    left: 100px;
+    left: 300px;
     background-color: lavender;
     cursor: pointer;
     font-weight: 300;
@@ -60,7 +61,7 @@ button:hover { margin-right: 20px; }
     font-style: inherit;
 }
 
-.winner {
+#winner {
     position: absolute;
     width: 100px;
     height: 50px;
@@ -69,4 +70,12 @@ button:hover { margin-right: 20px; }
     background-color: mediumseagreen;
     font-weight: 600;
     padding: 20px;
+}
+
+#playersInput {
+    position: absolute;
+    left: 500px;
+}
+input {
+    display: block;
 }
