@@ -3,6 +3,7 @@ var myFunction = function () {
     var board = 3;
     var flag = false;
     var spans = document.getElementsByTagName('span');
+    var players = [];
 
     for (i = 0; i < spans.length; i++) {
         spans[i].onclick = toggleFunction;
@@ -10,7 +11,10 @@ var myFunction = function () {
     var clickCount = 0;
 
     console.log("span elements,", spans);
-
+    document.getElementById("btn-reset").addEventListener("click", resetBoard);
+    //attach onclick event for each span element
+    document.getElementById("input1").addEventListener("click", readPlayerNames);
+    document.getElementById("input2").addEventListener("click", readPlayerNames);
     document.getElementById("btn-start").addEventListener("click", init);
 
     function init() {
@@ -18,25 +22,21 @@ var myFunction = function () {
         document.getElementById("player-1").classList.add("active");
         document.getElementById("player-2").classList.remove("active");
         // document.getElementById('first-player').style.display = 'none';
-
         clickCount = 0;
         resetBoard();
     }
 
-    document.getElementById("btn-reset").addEventListener("click", resetBoard);
-
-    //attach onclick event for each span element
-    document.getElementById("input1").addEventListener("click", readPlayerNames);
-    document.getElementById("input2").addEventListener("click", readPlayerNames);
+   
 
 
     function readPlayerNames() {
         console.log(event.path[0].id)
-        var player1 = document.getElementById('user'+event.path[0].id).value;
+        var player = document.getElementById('user'+event.path[0].id).value;
+        players.push(player);
         // document.getElementById('userinput1').value = '';
-        console.log(player1);
+        console.log(player);
         // document.getElementById('first-player').style.display = 'block';
-        document.getElementById('player'+ event.path[0].id).innerText = player1;
+        document.getElementById('player'+ event.path[0].id).innerText = player;
     }
     
 
@@ -52,7 +52,7 @@ var myFunction = function () {
                 document.getElementById("player-2").classList.toggle("active");
                 clickCount++;
                 if (checkForThree()) {
-                    endGame('X');
+                    endGame('X', players[0]);
                 }
                 // checkFullBoard();               
             }
@@ -63,7 +63,7 @@ var myFunction = function () {
                 document.getElementById("player-2").classList.toggle("active");
                 clickCount++;
                 if (checkForThree()) {
-                    endGame('O');
+                    endGame('O', players[1]);
                 }
             }
 
@@ -156,7 +156,7 @@ var myFunction = function () {
         }            
     }
     
-    function endGame(val) {
+    function endGame(val, playerName) {
         document.getElementById("player-1").classList.remove("active");
         document.getElementById("player-2").classList.remove("active");
         clickCount = -1;
@@ -170,7 +170,7 @@ var myFunction = function () {
         }
         console.log("inside end function");
 
-        divWinnerElement.innerHTML = val + '  is winner!!';
+        divWinnerElement.innerHTML = playerName + '  is winner!!';
         document.getElementById('winner').style.display = 'block';
 
         // var winnerId = 'score-'+val;
